@@ -73,7 +73,9 @@ namespace SQL_Checker
             button_check_mssql146.Visible = false;
 
             button_cred_check.Visible = false;
-    }
+
+            
+        }
 
         private async void button_checker_Click(object sender, EventArgs e)
         {
@@ -131,29 +133,45 @@ namespace SQL_Checker
                 credCheck();
             }
 
-            Task<int> task1 = Task.Run(() => mssql34());
-            Task<int> task2 = Task.Run(() => mssql35());
-            Task<int> task3 = Task.Run(() => mssql36());
-            Task<int> task4 = Task.Run(() => mssql38());
-            Task<int> task5 = Task.Run(() => mssql39());
-            Task<int> task6 = Task.Run(() => mssql40());
-            Task<int> task7 = Task.Run(() => mssql41());
-            Task<int> task8 = Task.Run(() => mssql42());
-            Task<int> task9 = Task.Run(() => mssql45());
-            Task<int> task10 = Task.Run(() => mssql131());
-            Task<int> task11 = Task.Run(() => mssql132());
-            Task<int> task12 = Task.Run(() => mssql133());
-            Task<int> task13 = Task.Run(() => mssql137());
-            Task<int> task14 = Task.Run(() => mssql139());
-            Task<int> task15 = Task.Run(() => mssql146());
+            if (tabControl1.SelectedTab.Text == "Production")
+            {
+                Task<int> task1 = Task.Run(() => mssql34());
+                Task<int> task2 = Task.Run(() => mssql35());
+                Task<int> task3 = Task.Run(() => mssql36());
+                Task<int> task4 = Task.Run(() => mssql38());
+                Task<int> task5 = Task.Run(() => mssql39());
+                Task<int> task6 = Task.Run(() => mssql40());
+                Task<int> task7 = Task.Run(() => mssql41());
+                Task<int> task8 = Task.Run(() => mssql42());
+                Task<int> task9 = Task.Run(() => mssql45());
+                Task<int> task10 = Task.Run(() => mssql131());
+                Task<int> task11 = Task.Run(() => mssql132());
+                Task<int> task12 = Task.Run(() => mssql133());
+                Task<int> task13 = Task.Run(() => mssql137());
+                Task<int> task14 = Task.Run(() => mssql139());
+                Task<int> task15 = Task.Run(() => mssql146());
+
+                int[] result = await Task.WhenAll(task2, task1, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13, task14, task15);
+            }
+            else if (tabControl1.SelectedTab.Text == "Staging")
+            {
+
+            }
+            else if (tabControl1.SelectedTab.Text == "Development")
+            {
+
+            }
+            else
+            {
+
+            }
 
 
-            int[] result = await Task.WhenAll(task2, task1, task3, task4, task5, task6, task7, task8, task9, task10, task11, task12, task13, task14, task15);
-            
 
-            
 
-            return 0;
+
+
+                return 0;
         }
 
         //public void DoProgress(IProgress<int> progess)
